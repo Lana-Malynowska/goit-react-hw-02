@@ -1,35 +1,48 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import "./App.css";
 
-function App() {
-  const [count, setCount] = useState(0)
-
+const App = () => {
   return (
     <>
       <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
+        <h1>Sip Happens Café</h1>
         <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
+          Please leave your feedback about our service by selecting one of the
+          options below.
         </p>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <div>
+        <button>Good</button>
+        <button>Neutral</button>
+        <button>Bad</button>
+        <button>Reset</button>
+      </div>
+      <div>
+        <ul>
+          <li>
+            <span>Good:</span>
+            <span>3</span>
+          </li>
+          <li>
+            <span>Neutral:</span>
+            <span>1</span>
+          </li>
+          <li>
+            <span>Bad:</span>
+            <span>1</span>
+          </li>
+          <li>
+            <span>Total:</span>
+            <span>5</span>
+          </li>
+          <li>
+            <span>Positive:</span>
+            <span>80%</span>
+          </li>
+        </ul>
+      </div>
     </>
-  )
-}
+  );
+};
 
-export default App
+export default App;
