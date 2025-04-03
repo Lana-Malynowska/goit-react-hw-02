@@ -1,46 +1,49 @@
 import { useState } from "react";
 import "./App.css";
+import Description from "./components/Description/Description";
+import Options from "./components/Options/Options";
+import Feedback from "./components/Feedback/Feedback";
+import Notification from "./components/Notification/Notification";
 
 const App = () => {
+  const [feedback, setFeedback] = useState({
+    good: 0,
+    neutral: 0,
+    bad: 0,
+  });
+
+  const updateFeedback = (feedbackType) => {
+    setFeedback((prevFeedback) => ({
+      ...prevFeedback,
+      [feedbackType]: prevFeedback[feedbackType] + 1,
+    }));
+  };
+
+  const resetFeedback = () => {
+    setFeedback({ good: 0, neutral: 0, bad: 0 });
+  };
+
+  const totalFeedback = feedback.good + feedback.neutral + feedback.bad;
+  const positiveFeedback =
+    totalFeedback > 0 ? Math.round((feedback.good / totalFeedback) * 100) : 0;
+
   return (
     <>
-      <div>
-        <h1>Sip Happens Café</h1>
-        <p>
-          Please leave your feedback about our service by selecting one of the
-          options below.
-        </p>
-      </div>
-      <div>
-        <button>Good</button>
-        <button>Neutral</button>
-        <button>Bad</button>
-        <button>Reset</button>
-      </div>
-      <div>
-        <ul>
-          <li>
-            <span>Good:</span>
-            <span>3</span>
-          </li>
-          <li>
-            <span>Neutral:</span>
-            <span>1</span>
-          </li>
-          <li>
-            <span>Bad:</span>
-            <span>1</span>
-          </li>
-          <li>
-            <span>Total:</span>
-            <span>5</span>
-          </li>
-          <li>
-            <span>Positive:</span>
-            <span>80%</span>
-          </li>
-        </ul>
-      </div>
+      <Description />
+      <Options
+        updateFeedback={updateFeedback}
+        resetFeedback={resetFeedback}
+        totalFeedback={totalFeedback}
+      />
+      {totalFeedback > 0 ? (
+        <Feedback
+          feedback={feedback}
+          totalFeedback={totalFeedback}
+          positiveFeedback={positiveFeedback}
+        />
+      ) : (
+        <Notification />
+      )}
     </>
   );
 };
