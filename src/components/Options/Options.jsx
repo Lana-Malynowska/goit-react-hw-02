@@ -1,4 +1,4 @@
-import s from "./O.module.css";
+import s from "./Options.module.css";
 
 const Options = ({ updateFeedback, resetFeedback, totalFeedback }) => {
   return (
